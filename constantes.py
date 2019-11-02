@@ -11,3 +11,6 @@ image_icon = "images/dk_droite.png"
 
 #Listes of images
 image_intro = "images/accueil.png"
+
+#Listes of sounds :
+sound_intro = "sounds/intro.wav"

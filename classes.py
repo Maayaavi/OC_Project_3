@@ -42,8 +42,8 @@ class Level:
         needle = pygame.image.load(image_needle).convert_alpha()
         tube = pygame.image.load(image_tube).convert()
         guardian = pygame.image.load(image_guardian).convert_alpha()
-        start = pygame.image.load(image_depart).convert()
-        end = pygame.image.load(image_arrivee).convert_alpha()
+        start = pygame.image.load(image_start).convert()
+        end = pygame.image.load(image_end).convert_alpha()
 
         # We go through the level list
         num_ligne = 0
@@ -99,7 +99,7 @@ class Perso:
         # Move to the right
         if direction == 'right':
             # Not to exceed the screen
-            if self.case_x < (nombre_sprite_cote - 1):
+            if self.case_x < (number_sprite_side - 1):
                 # Check that the destination box is not a wall
                 if self.niveau.structure[self.case_y][self.case_x + 1] != 'm':
                     # Moving a box
@@ -127,7 +127,7 @@ class Perso:
 
         # Move down
         if direction == 'down':
-            if self.case_y < (nombre_sprite_cote - 1):
+            if self.case_y < (number_sprite_side - 1):
                 if self.niveau.structure[self.case_y + 1][self.case_x] != 'm':
                     self.case_y += 1
                     self.y = self.case_y * size_sprite

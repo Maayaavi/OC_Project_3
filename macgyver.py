@@ -75,6 +75,10 @@ while start:
         niveau.generer()
         niveau.afficher(window)
 
+        # Création de Donkey Kong
+        mg = Perso("images/mg_right.png", "images/mg_left.png",
+                   "images/mg_up.png", "images/mg_down.png", niveau)
+
         # Game sound
         pygame.mixer.Sound(sound_game).play(loops=-1)
 
@@ -94,8 +98,18 @@ while start:
                 if event.key == K_ESCAPE:
                     pygame.mixer.stop()
                     continue_game = 0
+                # Character Move Keys
+                elif event.key == K_RIGHT:
+                    mg.move('right')
+                elif event.key == K_LEFT:
+                    mg.move('left')
+                elif event.key == K_UP:
+                    mg.move('up')
+                elif event.key == K_DOWN:
+                    mg.move('down')
 
         # Displays at new positions
         window.blit(background, (0, 0))
         niveau.afficher(window)
+        window.blit(mg.direction, (mg.x, mg.y))  # mg.direction = the image in the right direction
         pygame.display.flip()

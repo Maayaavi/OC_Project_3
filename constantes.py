@@ -31,7 +31,6 @@ sound_lost = "sounds/lost.wav"
 
 # Empty dictionary for the items count
 data = {
-       "s": 0,
        "e": 0,
        "n": 0,
        "t": 0

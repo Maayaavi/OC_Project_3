@@ -54,7 +54,7 @@ class Level:
                 # The actual position in pixels is calculated
                 x = num_case * size_sprite
                 y = num_ligne * size_sprite
-                if sprite == 'm':  # m = Mur
+                if sprite == '+' or sprite == '-' or sprite == '|':  # m = Mur
                     fenetre.blit(wall, (x, y))
                 elif sprite == 'd':  # d = Start
                     fenetre.blit(start, (x, y))
@@ -75,7 +75,7 @@ class Level:
 
 
 class Perso:
-    """Classe permettant de créer un personnage"""
+    """Class to create a character"""
 
     def __init__(self, right, left, up, down, level):
         # Sprites of the character
@@ -94,25 +94,29 @@ class Perso:
         self.niveau = level
 
     def move(self, direction):
-        """Methode permettant de déplacer le personnage"""
+        """Method for moving the character"""
 
         # Move to the right
         if direction == 'right':
             # Not to exceed the screen
             if self.case_x < (number_sprite_side - 1):
                 # Check that the destination box is not a wall
-                if self.niveau.structure[self.case_y][self.case_x + 1] != 'm':
-                    # Moving a box
-                    self.case_x += 1
-                    # Calculation of the "real" position in pixel
-                    self.x = self.case_x * size_sprite
+                if self.niveau.structure[self.case_y][self.case_x + 1] != '-' and \
+                        self.niveau.structure[self.case_y][self.case_x + 1] != '+' and\
+                        self.niveau.structure[self.case_y][self.case_x + 1] != '|':
+                        # Moving a box
+                        self.case_x += 1
+                        # Calculation of the "real" position in pixel
+                        self.x = self.case_x * size_sprite
             # Image in the right direction
             self.direction = self.right
 
         # Move to the left
         if direction == 'left':
             if self.case_x > 0:
-                if self.niveau.structure[self.case_y][self.case_x - 1] != 'm':
+                if self.niveau.structure[self.case_y][self.case_x - 1] != '-' and \
+                        self.niveau.structure[self.case_y][self.case_x - 1] != '+' and\
+                        self.niveau.structure[self.case_y][self.case_x - 1] != '|':
                     self.case_x -= 1
                     self.x = self.case_x * size_sprite
             self.direction = self.left
@@ -120,7 +124,9 @@ class Perso:
         # Move up
         if direction == 'up':
             if self.case_y > 0:
-                if self.niveau.structure[self.case_y - 1][self.case_x] != 'm':
+                if self.niveau.structure[self.case_y - 1][self.case_x] != '-' and \
+                        self.niveau.structure[self.case_y - 1][self.case_x] != '+' and \
+                        self.niveau.structure[self.case_y - 1][self.case_x] != '|':
                     self.case_y -= 1
                     self.y = self.case_y * size_sprite
             self.direction = self.up
@@ -128,7 +134,9 @@ class Perso:
         # Move down
         if direction == 'down':
             if self.case_y < (number_sprite_side - 1):
-                if self.niveau.structure[self.case_y + 1][self.case_x] != 'm':
+                if self.niveau.structure[self.case_y + 1][self.case_x] != '-' and \
+                        self.niveau.structure[self.case_y + 1][self.case_x] != '+' and \
+                        self.niveau.structure[self.case_y + 1][self.case_x] != '|':
                     self.case_y += 1
                     self.y = self.case_y * size_sprite
             self.direction = self.down

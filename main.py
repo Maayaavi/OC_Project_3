@@ -9,7 +9,6 @@ some objects through the labyrinth to sleep the guardian.
 
 import pygame
 from pygame.locals import *
-import time
 
 from labyrinth import Labyrinth
 from constantes import *
@@ -69,6 +68,7 @@ def main():
                             # Generating a level from a file
                             level = Labyrinth(choice)
                             level.load()
+
                             level.display_pygame(window)
 
                             # Generating all items

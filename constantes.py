@@ -19,7 +19,6 @@ image_needle = "images/needle.png"
 image_tube = "images/tube.png"
 image_guardian = "images/guardian.png"
 image_guardian_sleep = "images/guardian_sleep.png"
-image_end = "images/arrivee.png"
 image_win = "images/win.png"
 image_lost = "images/lost.png"
 

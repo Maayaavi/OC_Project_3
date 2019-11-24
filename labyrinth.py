@@ -1,8 +1,8 @@
 """Class of the Macgyver Maze Game"""
 
-import pygame
-from pygame.locals import *
 from constantes import *
+
+import pygame
 
 
 class Labyrinth:
@@ -33,12 +33,6 @@ class Labyrinth:
             self.structure = structure_niveau
             file.close()
 
-    def display_console(self):
-        for i in range(len(self.structure)):
-            for j in range(len(self.structure[i])):
-                print(self.structure[i][j], end='')
-            print()
-
     def display_pygame(self, fenetre):
         """Method for displaying the level according to
         of the structure list returned by generer ()"""
@@ -49,8 +43,7 @@ class Labyrinth:
         tube = pygame.image.load(image_tube).convert_alpha()
         character = pygame.image.load(image_character).convert_alpha()
         guardian = pygame.image.load(image_guardian).convert_alpha()
-        guardian_sleep_ = pygame.image.load(image_guardian_sleep).convert_alpha()
-        end = pygame.image.load(image_end).convert_alpha()
+        guardian_sleep = pygame.image.load(image_guardian_sleep).convert_alpha()
 
         # We go through the level list
         num_ligne = 0
@@ -69,13 +62,11 @@ class Labyrinth:
                     fenetre.blit(needle, (x, y))
                 elif sprite == '3':  # t = Tube
                     fenetre.blit(tube, (x, y))
-                # elif sprite == 'X':  # X = Character
-                # fenetre.blit(character, (x, y))
+                elif sprite == 'X':  # X = Character
+                    fenetre.blit(character, (x, y))
                 elif sprite == 'g':  # g = Guardian
                     fenetre.blit(guardian, (x, y))
                 elif sprite == 's':  # s = sleeping Guardian
-                    fenetre.blit(guardian_sleep_, (x, y))
-                elif sprite == 'a':  # a = End
-                    fenetre.blit(end, (x, y))
+                    fenetre.blit(guardian_sleep, (x, y))
                 num_case += 1
             num_ligne += 1

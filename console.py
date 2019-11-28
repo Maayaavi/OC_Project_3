@@ -12,6 +12,7 @@ import os
 
 from labyrinth import Labyrinth
 from display import Display
+from item import Items
 
 
 def clear_screen():
@@ -52,8 +53,17 @@ def main():
                 level = Labyrinth(choice)
                 level.load()
 
-                Display()
+                # Generate all items
+                level_item = Items(level)
+                level_item.display_ether()
+                level_item.display_needle()
+                level_item.display_tube()
 
+                # Generate the character
+
+                # Display the labyrinth
+                i = Display(level)
+                i.display_console()
 
                 entry = input("Votre déplacement, Sélectionez entre:\n Haut: H, Bas: B, Droite: D, Gauche"
                               ": G, Acceuil: A, Quitter: Q \nVotre choix? ")

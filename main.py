@@ -14,6 +14,7 @@ from labyrinth import Labyrinth
 from constantes import *
 from character import Character
 from item import Items
+from display import Display
 
 
 def main():
@@ -65,18 +66,22 @@ def main():
                         if choice != 0:
                             # Loading the background image
                             background = pygame.image.load(image_background).convert()
-                            # Generating a level from a file
+                            # Generating a level from the file
                             level = Labyrinth(choice)
                             level.load()
 
-                            level.display_pygame(window)
-
-                            # Generating all items
+                            # Generate all items
                             level_item = Items(level)
-                            level_item.display_item()
+                            level_item.display_ether()
+                            level_item.display_needle()
+                            level_item.display_tube()
 
                             # Generate the character
-                            mg = Character(image_character, level)
+                            mg = Character(level)
+
+                            # Display the labyrinth
+                            level_display = Display(level)
+                            level_display.display_pygame(window)
 
 
         # GAME LOOP
@@ -99,47 +104,47 @@ def main():
                         data_item = {"e": 0, "n": 0, "t": 0}
                     # Character Move Keys
                     elif event.key == K_RIGHT:
-                        mg.move('right')
+                        mg.move_right('right')
                     elif event.key == K_LEFT:
-                        mg.move('left')
+                        mg.move_left('left')
                     elif event.key == K_UP:
-                        mg.move('up')
+                        mg.move_up('up')
                     elif event.key == K_DOWN:
-                        mg.move('down')
+                        mg.move_down('down')
 
             # Displays at new positions
             window.blit(background, (0, 0))
-            level.display_pygame(window)
-            window.blit(mg.direction, (mg.x, mg.y))  # mg.direction = the image in the right direction
+            level_display.display_pygame(window)
+            window.blit(mg.character, (mg.x, mg.y))  # mg.direction = the image in the right direction
             mg.find()
             mg.exit()
             pygame.display.flip()
 
             if mg.exit() == 'lost':
-                    # Reset data value
-                    data_item = {"e": 0, "n": 0, "t": 0}
-                    # Stop game music
-                    pygame.mixer.stop()
-                    # play lost sound
-                    pygame.mixer.Sound(sound_lost).play()
-                    # Lost loop
-                    continue_lost = 1
-                    while continue_lost:
-                        pygame.time.Clock().tick(30)
-                        for event in pygame.event.get():
-                            if event.type == KEYDOWN and event.key == K_RETURN:
-                                continue_lost = 0
-                                continue_game = 0
-                            elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-                                continue_lost = 0
-                                continue_game = 0
-                                continue_intro = 0
-                                start = 0
-                                choice = 0
-                        # Loading and viewing the lost screen
-                        lost = pygame.image.load(image_lost).convert()
-                        window.blit(lost, (0, 0))
-                        pygame.display.flip()
+                # Reset data value
+                data_item = {"e": 0, "n": 0, "t": 0}
+                # Stop game music
+                pygame.mixer.stop()
+                # play lost sound
+                pygame.mixer.Sound(sound_lost).play()
+                # Lost loop
+                continue_lost = 1
+                while continue_lost:
+                    pygame.time.Clock().tick(30)
+                    for event in pygame.event.get():
+                        if event.type == KEYDOWN and event.key == K_RETURN:
+                            continue_lost = 0
+                            continue_game = 0
+                        elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                            continue_lost = 0
+                            continue_game = 0
+                            continue_intro = 0
+                            start = 0
+                            choice = 0
+                    # Loading and viewing the lost screen
+                    lost = pygame.image.load(image_lost).convert()
+                    window.blit(lost, (0, 0))
+                    pygame.display.flip()
 
             elif mg.exit() == 'win':
                 data_item = {"e": 0, "n": 0, "t": 0}

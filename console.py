@@ -11,8 +11,9 @@ import sys
 import os
 
 from labyrinth import Labyrinth
-from display import Display
+from character import Character
 from item import Items
+from display import Display
 
 
 def clear_screen():
@@ -60,17 +61,28 @@ def main():
                 level_item.display_tube()
 
                 # Generate the character
+                mg = Character(level)
 
                 # Display the labyrinth
                 i = Display(level)
                 i.display_console()
 
-                entry = input("Votre déplacement, Sélectionez entre:\n Haut: H, Bas: B, Droite: D, Gauche"
-                              ": G, Acceuil: A, Quitter: Q \nVotre choix? ")
-                if entry == "A":
+                entry = input('Votre déplacement, Sélectionez entre:\n Haut: H, Bas: B, Droite: D, Gauche'
+                              ': G, Acceuil: A, Quitter: Q \nVotre choix? ')
+                #
+                if entry == 'A':
                     continue_game = 0
-                elif entry == "Q":
+                elif entry == 'Q':
                     exit(1)
+                # Character move Keywords
+                elif entry == 'D':
+                    mg.move_right('right')
+                elif entry == 'G':
+                    mg.move_left('left')
+                elif entry == 'H':
+                    mg.move_up('up')
+                elif entry == 'B':
+                    mg.move_down('down')
 
 
 if __name__ == '__main__':

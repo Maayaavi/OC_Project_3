@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 from constantes import *
 
 
@@ -8,7 +7,6 @@ class Character:
     def __init__(self, level):
         # Sprite of the character
         self.character = pygame.image.load(image_character).convert_alpha()
-        # pygame.image.load(image_character).convert_alpha()
         # Character position in boxes and pixels
         self.case_x = 1
         self.case_y = 0
@@ -18,8 +16,7 @@ class Character:
         self.niveau = level
 
     def move_right(self, direction):
-        """Method for moving the character"""
-        # Move to the right
+        """Method for move the character to the right"""
         if direction == 'right':
             # Not to exceed the screen
             if self.case_x < (number_sprite_side - 1):
@@ -30,7 +27,7 @@ class Character:
                         self.x = self.case_x * size_sprite
 
     def move_left(self, direction):
-        # Move to the left
+        """Method for move the character to the left"""
         if direction == 'left':
             if self.case_x > 0:
                 if self.niveau.structure[self.case_y][self.case_x - 1] not in ['-', '+', '|']:
@@ -38,7 +35,7 @@ class Character:
                     self.x = self.case_x * size_sprite
 
     def move_up(self, direction):
-        # Move up
+        """Method for move up the character"""
         if direction == 'up':
             if self.case_y > 0:
                 if self.niveau.structure[self.case_y - 1][self.case_x] not in ['-', '+', '|']:
@@ -46,7 +43,7 @@ class Character:
                     self.y = self.case_y * size_sprite
 
     def move_down(self, direction):
-        # Move down
+        """Method for move down the character"""
         if direction == 'down':
             if self.case_y < (number_sprite_side - 1):
                 if self.niveau.structure[self.case_y + 1][self.case_x] not in ['-', '+', '|']:

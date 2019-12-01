@@ -21,7 +21,7 @@ def main():
     pygame.init()
 
     # Opening the Pygame window (square: width = height)
-    window = pygame.display.set_mode((window_side, window_side))
+    window = pygame.display.set_mode((window_side, window_side + 40))
     # Icone
     icon = pygame.image.load(image_icon)
     pygame.display.set_icon(icon)
@@ -42,7 +42,7 @@ def main():
         continue_intro = True
         continue_game = False
 
-        # HOME LOOP
+        # INTRO LOOP
         while continue_intro:
             # Speed limitation of the loop
             pygame.time.Clock().tick(30)
@@ -66,6 +66,7 @@ def main():
                         if choice != 0:
                             # Loading the background image
                             background = pygame.image.load(image_background).convert()
+
                             # Generating a level from the file
                             level = Labyrinth(choice)
                             level.load()
@@ -115,7 +116,7 @@ def main():
             # Displays at new positions
             window.blit(background, (0, 0))
             level_display.display_pygame(window)
-            window.blit(mg.character, (mg.x, mg.y))  # mg.direction = the image in the right direction
+            window.blit(mg.character, (mg.x, mg.y))
             mg.find()
             mg.exit()
             pygame.display.flip()

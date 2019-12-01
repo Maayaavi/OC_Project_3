@@ -6,7 +6,7 @@ size_sprite = 30
 window_side = number_sprite_side * size_sprite
 
 # Customizing the window
-window_title = "MacGyver Labyrinth"
+window_title = "Macgyver's Maze"
 image_icon = "images/macgyver.png"
 
 # Listes of images

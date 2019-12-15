@@ -7,38 +7,35 @@ class Items:
         # Items position in boxes
         self.case_x = 0
         self.case_y = 0
+        self.i = None
         # Level in which the items is located
         self.level = level
 
+    def random_case(self):
+        self.case_x = randint(1, 14)
+        self.case_y = randint(1, 14)
+        self.i = self.level.structure[self.case_x][self.case_y]
+
     def display_ether(self):
         """Method for display randomly ether"""
-        item = True
-        while item:
-            self.case_x = randint(1, 14)
-            self.case_y = randint(1, 14)
-            i = choice(self.level.structure[self.case_x][self.case_y])
-            if i in ' ':
+        while True:
+            self.random_case()
+            if self.i in ' ':
                 self.level.structure[self.case_x][self.case_y] = '1'
-                item = False
+                break
 
     def display_needle(self):
         """Method for display randomly needle"""
-        item = True
-        while item:
-            self.case_x = randint(1, 14)
-            self.case_y = randint(1, 14)
-            i = choice(self.level.structure[self.case_x][self.case_y])
-            if i in ' ':
+        while True:
+            self.random_case()
+            if self.i in ' ':
                 self.level.structure[self.case_x][self.case_y] = '2'
-                item = False
+                break
 
     def display_tube(self):
         """Method for display randomly tube"""
-        item = True
-        while item:
-            self.case_x = randint(1, 14)
-            self.case_y = randint(1, 14)
-            i = choice(self.level.structure[self.case_x][self.case_y])
-            if i in ' ':
+        while True:
+            self.random_case()
+            if self.i in ' ':
                 self.level.structure[self.case_x][self.case_y] = '3'
-                item = False
+                break

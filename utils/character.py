@@ -69,9 +69,7 @@ class Character:
             if data_item == {"e": 1, "n": 1, "t": 1}:
                 # Transform the guardian to sleeping
                 self.niveau.structure[self.case_y][self.case_x] = "s"
-                print('ok')
             else:
-                return True
+                return 'lost'
         elif self.niveau.structure[self.case_y][self.case_x] == 'a':
-            return False
-
+            return 'win'

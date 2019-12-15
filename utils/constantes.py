@@ -21,7 +21,7 @@ image_guardian = "images/guardian.png"
 image_guardian_sleep = "images/guardian_sleep.png"
 image_win = "images/win.png"
 image_lost = "images/lost.png"
-
+image_background_counter = "images/image.png"
 # Listes of sounds :
 sound_win = "sounds/win.wav"
 sound_lost = "sounds/lost.wav"

@@ -1,5 +1,5 @@
 import pygame
-from utils.constantes import *
+from utils.constants import *
 
 
 class Character:

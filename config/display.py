@@ -1,7 +1,7 @@
 """Class for display the Macgyver Maze Game on Pygame or console"""
 
 import pygame
-from utils.constantes import *
+from utils.constants import *
 
 
 class Display:

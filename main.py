@@ -19,109 +19,89 @@ class Game:
 
     def __init__(self):
         self.data_item = {"e": 0, "n": 0, "t": 0}
-        # Opening the Pygame window (square: width = height)
+        # Initialize the Pygame window (square: width = height)
         self.window = pygame.display.set_mode((window_side, window_side + 40))
         self.choice = 0
-        self.while_start = True
-        self.while_intro = True
-        self.while_game = True
-        self.while_lose = True
-        self.while_win = True
 
     def main(self):
+        """ Method for display intro screen """
         pygame.init()
 
-        # Icone
+        # Icon
         icon = pygame.image.load(image_icon)
         pygame.display.set_icon(icon)
         # Title
         pygame.display.set_caption(window_title)
 
-        # MAIN LOOP
-        while self.while_start:
+        # Main loop
+        while_intro = True
+        while while_intro:
             # Display the home screen
             home = pygame.image.load(image_intro).convert()
             self.window.blit(home, (0, 0))
 
-            # Refreshments
+            # Refreshment
             pygame.display.flip()
 
-            self.intro()
-
-    def intro(self):
-        # INTRO LOOP
-        while self.while_intro:
             # Speed limitation of the loop
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
-                # If the user leaves, we put the variables
-                # loop to 0 to browse none and close
+                # If the user close the window or press Esc, it will leave the program
                 if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-                    self.while_intro = False
-                    self.while_start = False
+                    while_intro = False
 
                 elif event.type == KEYDOWN:
-                    # Launch the level
+                    # Launch the map
                     if event.key == K_RETURN:
-                        pygame.mixer.stop()
-                        self.choice = 'map/n1.txt'  # We define the level to load
+                        # Define the map to load
+                        self.choice = 'map/n1.txt'
 
-                        # Check that the player has made a choice of level
-                        # to not load if he leaves
-                        if self.choice != 0:
-                            # Loading the background image
-                            background = pygame.image.load(image_background).convert()
+                        # Loading the background image
+                        background = pygame.image.load(image_background).convert()
 
-                            # Generating a level from the file
-                            level = config.labyrinth.Labyrinth(self.choice)
-                            level.load()
+                        # Generating a level from the file
+                        level = config.labyrinth.Labyrinth(self.choice)
+                        level.load()
 
-                            # Generate all items
-                            level_item = config.item.Items(level)
-                            level_item.display_ether()
-                            level_item.display_needle()
-                            level_item.display_tube()
-                            # level_item.display_item()
+                        # Generate all items
+                        level_item = config.item.Items(level)
+                        level_item.display_item()
 
-                            # Generate the character
-                            mg = config.character.Character(level, self.data_item)
+                        # Generate the character
+                        mg = config.character.Character(level, self.data_item)
 
-                            # Display the labyrinth
-                            level_display = config.display.Display(level, self.data_item)
-                            level_display.display_game()
+                        # Display the labyrinth
+                        level_display = config.display.Display(level, self.data_item)
+                        level_display.display_game()
 
-                            # Stop intro loop
-                            self.while_intro = False
-                            self.while_start = False
+                        self.game(level_display, background, mg)
 
-                            self.game(level_display, background, mg)
+                        # Stop intro loop
+                        while_intro = False
 
     def game(self, level_display, background, mg):
-        # GAME LOOP
-        while self.while_game:
+        """ Method for display game screen """
+        # Game loop
+        while_game = True
+        while while_game:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
-                # If the user leaves, we put the variable that continues the game
-                # AND the general variable to 0 to close the window
+                # If the user close the window, it leave the program
                 if event.type == QUIT:
-
                     # Stop game loop
-                    self.while_game = False
+                    while_game = False
 
                 elif event.type == KEYDOWN:
                     # If the user press Esc, we just go back to the menu
                     if event.key == K_ESCAPE:
 
-                        # Reinitialize an object
+                        # Reinitialize the counter value
                         self.reset()
-
                         # Go to the main loop
                         self.main()
+                        while_game = False
 
-                        # Close the game loop
-                        self.while_game = False
-
-                    # Character Move Keys
+                    # Character move keys
                     elif event.key == K_RIGHT:
                         mg.move_right()
                     elif event.key == K_LEFT:
@@ -143,29 +123,29 @@ class Game:
             if mg.exit() == 'lost':
                 self.reset()
                 self.lose()
-                self.while_game = False
+                while_game = False
 
             elif mg.exit() == 'win':
                 self.reset()
                 self.win()
-                self.while_game = False
+                while_game = False
 
     def lose(self):
-        """ Method for display win screen """
+        """ Method for display lose screen """
         # Play lost sound
         pygame.mixer.Sound(sound_lost).play()
 
         # Lost loop
-        while self.while_lose:
+        while_lose = True
+        while while_lose:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_RETURN:
                     self.main()
-                    self.while_lose = False
+                    while_lose = False
 
                 elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-                    self.while_lose = False
-                    self.while_game = False
+                    while_lose = False
 
             # Diplay the lost screen
             lost = pygame.image.load(image_lost).convert()
@@ -177,15 +157,16 @@ class Game:
         # Play win sound
         pygame.mixer.Sound(sound_win).play()
         # Victory loop
-        while self.while_win:
+        while_win = True
+        while while_win:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_RETURN:
                     self.main()
-                    self.while_win = False
+                    while_win = False
 
                 elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-                    self.while_win = False
+                    while_win = False
 
             # Display the victory screen
             win = pygame.image.load(image_win).convert()
@@ -194,11 +175,6 @@ class Game:
 
     def reset(self):
         """ Method for Reinitialize value """
-        self.while_start = True
-        self.while_intro = True
-        self.while_game = True
-        self.while_lose = True
-        self.while_win = True
         self.data_item = {"e": 0, "n": 0, "t": 0}
 
 

@@ -10,7 +10,7 @@ class Display:
         self.level = level
         self.data_item = item
         # Opening the Pygame window (square: width = height)
-        self.window = pygame.display.set_mode((window_side, window_side + 40))
+        self.window = pygame.display.set_mode((window_width, window_length))
         # Loading images
         self.wall = pygame.image.load(image_wall).convert()
         self.background_counter = pygame.image.load(image_background_counter).convert()

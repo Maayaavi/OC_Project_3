@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 # -*- coding: Utf-8 -*
-
-"""
-Macgyver Maze Game
-A game in the player have to move Macgyver to the exit door by collecting
-some objects through the labyrinth to sleep the guardian.
-"""
+########################################################################
+# Filename    : main.py                                                #
+# Description : A maze game in the player have to move Macgyver to the #
+#               exit by collecting some objects through the labyrinth  #
+#               for sleep the guardian.                                #
+# Author      : LAVANIYAN Jeyasiri                                     #
+# modification: 2020/01/04                                             #
+########################################################################
 
 import pygame
 from pygame.locals import *
@@ -20,10 +22,10 @@ class Game:
     def __init__(self):
         self.data_item = {"e": 0, "n": 0, "t": 0}
         # Initialize the Pygame window (square: width = height)
-        self.window = pygame.display.set_mode((window_side, window_side + 40))
+        self.window = pygame.display.set_mode((window_width, window_length))
         self.choice = 0
 
-    def main(self):
+    def intro(self):
         """ Method for display intro screen """
         pygame.init()
 
@@ -54,7 +56,7 @@ class Game:
                     # Launch the map
                     if event.key == K_RETURN:
                         # Define the map to load
-                        self.choice = 'map/n1.txt'
+                        self.choice = '../map/n1.txt'
 
                         # Loading the background image
                         background = pygame.image.load(image_background).convert()
@@ -98,7 +100,7 @@ class Game:
                         # Reinitialize the counter value
                         self.reset()
                         # Go to the main loop
-                        self.main()
+                        self.intro()
                         while_game = False
 
                     # Character move keys
@@ -132,8 +134,8 @@ class Game:
 
     def lose(self):
         """ Method for display lose screen """
-        # Play lost sound
-        pygame.mixer.Sound(sound_lost).play()
+        # Play lose sound
+        pygame.mixer.Sound(sound_lose).play()
 
         # Lost loop
         while_lose = True
@@ -141,14 +143,14 @@ class Game:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_RETURN:
-                    self.main()
+                    self.intro()
                     while_lose = False
 
                 elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
                     while_lose = False
 
             # Diplay the lost screen
-            lost = pygame.image.load(image_lost).convert()
+            lost = pygame.image.load(image_lose).convert()
             self.window.blit(lost, (0, 0))
             pygame.display.flip()
 
@@ -162,7 +164,7 @@ class Game:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_RETURN:
-                    self.main()
+                    self.intro()
                     while_win = False
 
                 elif event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
@@ -180,4 +182,4 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
-    game.main()
+    game.intro()

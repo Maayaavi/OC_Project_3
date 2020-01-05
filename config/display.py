@@ -63,9 +63,3 @@ class Display:
 
         if self.data_item["t"] == 1:
             self.window.blit(self.tube, (70, 455))
-
-    def display_console(self):
-        for i in range(len(self.level.structure)):
-            for j in range(len(self.level.structure[i])):
-                print(self.level.structure[i][j], end='')
-            print()

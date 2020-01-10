@@ -1,11 +1,9 @@
-"""Class for display the Macgyver Maze Game on Pygame or console"""
-
 import pygame
 from utils.constants import *
 
 
 class Display:
-
+    """Class for display the Macgyver Maze Game on Pygame"""
     def __init__(self, level, item):
         self.level = level
         self.data_item = item

@@ -24,7 +24,7 @@ class Items:
         self.i = self.level.structure[self.case_x][self.case_y]
 
     def generate(self, item):
-        """Method for generate randomly an items"""
+        """Method general for generate randomly an items"""
         while True:
             self.random_case()
             if self.i in ' ':

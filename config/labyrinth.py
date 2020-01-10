@@ -1,9 +1,5 @@
-"""Class of the Macgyver Maze Game"""
-
-
 class Labyrinth:
-    """Class to create a level"""
-
+    """Class to create a structure"""
     def __init__(self, fichier):
         self.fichier = fichier
         self.structure = 0

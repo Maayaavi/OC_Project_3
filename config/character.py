@@ -53,14 +53,11 @@ class Character:
             self.data_item["e"] = 1
             # Delete the item
             self.niveau.structure[self.case_y][self.case_x] = " "
-            print(self.data_item)
         elif self.niveau.structure[self.case_y][self.case_x] in '2':
             self.data_item["n"] = 1
             self.niveau.structure[self.case_y][self.case_x] = " "
-            print(self.data_item)
         elif self.niveau.structure[self.case_y][self.case_x] in '3':
             self.data_item["t"] = 1
-            print(self.data_item)
             self.niveau.structure[self.case_y][self.case_x] = " "
 
     def exit(self):
@@ -70,6 +67,6 @@ class Character:
                 # Transform the guardian to sleeping
                 self.niveau.structure[self.case_y][self.case_x] = "s"
             else:
-                return 'lost'
+                return 'lose'
         elif self.niveau.structure[self.case_y][self.case_x] == 'a':
             return 'win'

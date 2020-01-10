@@ -8,16 +8,16 @@ class Display:
         self.level = level
         self.data_item = item
         # Opening the Pygame window (square: width = height)
-        self.window = pygame.display.set_mode((window_width, window_length))
+        self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_LENGTH))
         # Loading images
-        self.wall = pygame.image.load(image_wall).convert()
-        self.background_counter = pygame.image.load(image_background_counter).convert()
-        self.ether = pygame.image.load(image_ether).convert_alpha()
-        self.needle = pygame.image.load(image_needle).convert_alpha()
-        self.tube = pygame.image.load(image_tube).convert_alpha()
-        self.character = pygame.image.load(image_character).convert_alpha()
-        self.guardian = pygame.image.load(image_guardian).convert_alpha()
-        self.guardian_sleep = pygame.image.load(image_guardian_sleep).convert_alpha()
+        self.wall = pygame.image.load(IMAGE_WALL).convert()
+        self.background_counter = pygame.image.load(IMAGE_BACKGROUND_COUNTER).convert()
+        self.ether = pygame.image.load(IMAGE_ETHER).convert_alpha()
+        self.needle = pygame.image.load(IMAGE_NEEDLE).convert_alpha()
+        self.tube = pygame.image.load(IMAGE_TUBE).convert_alpha()
+        self.character = pygame.image.load(IMAGE_CHARACTER).convert_alpha()
+        self.guardian = pygame.image.load(IMAGE_GUARDIAN).convert_alpha()
+        self.guardian_sleep = pygame.image.load(IMAGE_GUARDIAN_SLEEP).convert_alpha()
 
     def display_window(self):
         pass
@@ -32,8 +32,8 @@ class Display:
             num_case = 0
             for sprite in ligne:
                 # The actual position in pixels is calculated
-                x = num_case * size_sprite
-                y = num_ligne * size_sprite
+                x = num_case * SIZE_SPRITE
+                y = num_ligne * SIZE_SPRITE
                 if sprite == '+' or sprite == '-' or sprite == '|':  # +, -, | = Mur
                     self.window.blit(self.wall, (x, y))
                 elif sprite == '1':  # e = Ether

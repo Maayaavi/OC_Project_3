@@ -1,29 +1,29 @@
 """Constants of the Macgyver Maze Game"""
 
 # Window settings
-number_sprite_side = 15
-size_sprite = 30
-window_width = number_sprite_side * size_sprite
-window_length = number_sprite_side * size_sprite + 40
+NUMBER_SPRITE_SIDE = 15
+SIZE_SPRITE = 30
+WINDOW_WIDTH = NUMBER_SPRITE_SIDE * SIZE_SPRITE
+WINDOW_LENGTH = NUMBER_SPRITE_SIDE * SIZE_SPRITE + 40
 
 # Customizing the window
-window_title = "Macgyver's Maze"
-image_icon = "images/macgyver.png"
+WINDOW_TITLE = "Macgyver's Maze"
+IMAGE_ICON = "images/macgyver.png"
 
 # Listes of images
-image_intro = "images/welcome.png"
-image_background = "images/background.jpg"
-image_character = "images/mg_char.png"
-image_wall = "images/mur.png"
-image_ether = "images/ether.png"
-image_needle = "images/needle.png"
-image_tube = "images/tube.png"
-image_guardian = "images/guardian.png"
-image_guardian_sleep = "images/guardian_sleep.png"
-image_win = "images/win.png"
-image_lose = "images/lost.png"
-image_background_counter = "images/image.png"
+IMAGE_INTRO = "images/welcome.png"
+IMAGE_BACKGROUND = "images/background.jpg"
+IMAGE_CHARACTER = "images/mg_char.png"
+IMAGE_WALL = "images/mur.png"
+IMAGE_ETHER = "images/ether.png"
+IMAGE_NEEDLE = "images/needle.png"
+IMAGE_TUBE = "images/tube.png"
+IMAGE_GUARDIAN = "images/guardian.png"
+IMAGE_GUARDIAN_SLEEP = "images/guardian_sleep.png"
+IMAGE_WIN = "images/win.png"
+IMAGE_LOSE = "images/lost.png"
+IMAGE_BACKGROUND_COUNTER = "images/image.png"
 
 # Listes of sounds
-sound_win = "sounds/win.wav"
-sound_lose = "sounds/lost.wav"
+SOUND_WIN = "sounds/win.wav"
+SOUND_LOSE = "sounds/lost.wav"

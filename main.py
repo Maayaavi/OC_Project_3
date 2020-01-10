@@ -25,21 +25,21 @@ class Game:
     def __init__(self):
         self.data_item = {"e": 0, "n": 0, "t": 0}
         # Initialize the Pygame window (square: width = height)
-        self.window = pygame.display.set_mode((window_width, window_length))
+        self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_LENGTH))
         self.choice = 0
 
     def intro(self):
         """ Method for display intro screen """
         # Icon
-        icon = pygame.image.load(image_icon)
+        icon = pygame.image.load(IMAGE_ICON)
         pygame.display.set_icon(icon)
         # Title
-        pygame.display.set_caption(window_title)
+        pygame.display.set_caption(WINDOW_TITLE)
         # Intro loop
         while_intro = True
         while while_intro:
             # Display the home screen
-            home = pygame.image.load(image_intro).convert()
+            home = pygame.image.load(IMAGE_INTRO).convert()
             self.window.blit(home, (0, 0))
             # Refreshment
             pygame.display.flip()
@@ -55,7 +55,7 @@ class Game:
                         # Define the map to load
                         self.choice = 'map/n1.txt'
                         # Loading the background image
-                        background = pygame.image.load(image_background).convert()
+                        background = pygame.image.load(IMAGE_BACKGROUND).convert()
                         # Generate a structure from the file
                         level = config.labyrinth.Labyrinth(self.choice)
                         level.load()
@@ -121,7 +121,7 @@ class Game:
     def lose(self):
         """ Method for display lose screen """
         # Play lose sound
-        pygame.mixer.Sound(sound_lose).play()
+        pygame.mixer.Sound(SOUND_LOSE).play()
         # Lose loop
         while_lose = True
         while while_lose:
@@ -134,14 +134,14 @@ class Game:
                     self.gamequit()
 
             # Diplay the lose screen
-            lost = pygame.image.load(image_lose).convert()
+            lost = pygame.image.load(IMAGE_LOSE).convert()
             self.window.blit(lost, (0, 0))
             pygame.display.flip()
 
     def win(self):
         """ Method for display win screen """
         # Play win sound
-        pygame.mixer.Sound(sound_win).play()
+        pygame.mixer.Sound(SOUND_WIN).play()
         # Victory loop
         while_win = True
         while while_win:
@@ -154,7 +154,7 @@ class Game:
                     self.gamequit()
 
             # Display the victory screen
-            win = pygame.image.load(image_win).convert()
+            win = pygame.image.load(IMAGE_WIN).convert()
             self.window.blit(win, (0, 0))
             pygame.display.flip()
 
